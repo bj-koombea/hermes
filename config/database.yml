@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: postgres
+  password: password
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: hermes_db_development
+
+test:
+  <<: *default
+  database: hermes_db_test
+
+production:
+  <<: *default
+  database:  <%= ENV.fetch("DATABASE_URL") { 'hermes_db_production' } %>
+
+# staging:
+#   <<: *default
+#   database: hermes_db_staging
